@@ -1,0 +1,100 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Class {
+  id            Int             @id @default(autoincrement())
+  name          String
+  year          Int
+  semester      Int
+  Student_Class Student_Class[] 
+  Class_Subject Class_Subject[]
+} 
+
+model Subject {
+  id              Int               @id @default(autoincrement())
+  name            String
+  description     String
+  Grade           Grade[] // TODO 
+  Teacher_Subject Teacher_Subject[] 
+  Class_Subject   Class_Subject[]
+}
+
+model Class_Subject {
+  class_id   Int
+  subject_id Int
+
+  class   Class   @relation(fields: [class_id], references: [id])
+  subject Subject @relation(fields: [subject_id], references: [id])
+
+  @@id([class_id, subject_id])
+}
+
+enum User_Type {
+  Student
+  Teacher
+  Coordinator
+}
+
+model User {
+  id              Int               @id @default(autoincrement())
+  name            String
+  email           String            @unique
+  password        String
+  type            User_Type
+  Announcements   Announcement[] // TODO 
+  Grade           Grade[]
+  Student_Class   Student_Class[] 
+  Teacher_Subject Teacher_Subject[] 
+}
+
+model Student_Class {
+  student_id Int
+  class_id   Int
+
+  student User  @relation(fields: [student_id], references: [id])
+  class   Class @relation(fields: [class_id], references: [id])
+
+  @@id([student_id, class_id])
+}
+
+model Teacher_Subject {
+  teacher_id Int
+  subject_id Int
+
+  teacher User    @relation(fields: [teacher_id], references: [id])
+  subject Subject @relation(fields: [subject_id], references: [id])
+
+  @@id([teacher_id, subject_id])
+}
+
+model Grade { 
+  id         Int   @id @default(autoincrement())
+  student_id Int
+  subject_id Int
+  grade      Float
+
+  student User    @relation(fields: [student_id], references: [id])
+  subject Subject @relation(fields: [subject_id], references: [id])
+}
+
+model Announcement {
+  id            Int      @id @default(autoincrement())
+  title         String
+  content       String
+  author_id     Int
+  creation_date DateTime
+
+  author User @relation(fields: [author_id], references: [id])
+}
