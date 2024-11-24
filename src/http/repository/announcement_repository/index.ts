@@ -8,7 +8,7 @@ export class AnnouncementRepositoryPostgres implements IAnnouncementRepository {
                 id: data.id,
                 author_id: data.author_id,
                 content: data.content,
-                creation_date: data.creation_date,
+                creation_date: data.creation_date ?? new Date(),
                 title: data.title
             }
         });

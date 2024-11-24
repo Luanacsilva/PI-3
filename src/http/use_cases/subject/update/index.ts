@@ -4,6 +4,8 @@ import { GetSubjectByIdUseCase } from "@/http/use_cases/subject/read/get_subject
 import { HTTPResponseFormat } from "@/types";
 import { ISubjectRepository } from "@/types/subject";
 import { Request, Response, NextFunction } from "express";
+import { UpdateSubjectByIdUseCase } from "./update_subject_by_id";
+import { DeleteSubjectByIdUseCase } from "../delete/delete_subject_by_id";
 
 export class SubjectController {
     subject_repository: ISubjectRepository;
@@ -88,7 +90,7 @@ export class SubjectController {
 
         const { class_id } = req.params;
 
-        const update_by_id = new UpdateClassByIdUseCase(this.subject_repository);
+        const update_by_id = new UpdateSubjectByIdUseCase(this.subject_repository);
 
         try {
             await update_by_id.execute(+class_id, req.body);
@@ -109,7 +111,7 @@ export class SubjectController {
 
         const { class_id } = req.params;
 
-        const delete_class_by_id = new DeleteClassByIdUseCase(this.subject_repository);
+        const delete_class_by_id = new DeleteSubjectByIdUseCase(this.subject_repository);
 
         try {
             await delete_class_by_id.execute(+class_id);
