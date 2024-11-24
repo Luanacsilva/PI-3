@@ -14,7 +14,7 @@ export class GetUserByIdUseCase {
 
         if (!id_validation.success) {
             throw new UserValidationDataError({
-                id: id_validation.error.formErrors.formErrors
+                user_id: id_validation.error.formErrors.formErrors
             });
         }
 

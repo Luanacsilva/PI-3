@@ -14,8 +14,8 @@ const user_controller = new UserController(
 );
 
 router
-    .post("/users", user_controller.create)
-    .get("/users", isAuthenticated, is(["Student", "Teacher"]), user_controller.getAll)
+    .post("/users", isAuthenticated, is(["Coordinator",]), user_controller.create)
+    .get("/users", isAuthenticated, user_controller.getAll)
     .get("/users/:user_id", user_controller.getById)
     .put("/users/:user_id", user_controller.updateById)
     .delete("/users/:user_id", user_controller.deleteById)
@@ -29,6 +29,7 @@ router
     .delete("/users/:user_id/subjects/:subject_id", user_controller.removeTeacherSubject)
 
     .get("/users/:user_id/grades", user_controller.getUserGrades)
+    
     .get("/users/:user_id/announcements", user_controller.getUserAnnouncement);
 
 export { router as user_routes };

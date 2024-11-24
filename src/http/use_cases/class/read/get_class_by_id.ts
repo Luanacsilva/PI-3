@@ -14,7 +14,7 @@ export class GetClassByIdUseCase {
 
         if (!id_validation.success) {
             throw new ClassValidationDataError({
-                id: id_validation.error.formErrors.formErrors
+                class_id: id_validation.error.formErrors.formErrors
             });
         }
 

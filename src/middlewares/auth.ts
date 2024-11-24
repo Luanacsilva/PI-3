@@ -1,5 +1,6 @@
 
 import { HTTPResponseFormat } from "@/types";
+import { User_Type } from "@/types/user";
 import { Request, Response, NextFunction } from "express";
 import jwt, { JsonWebTokenError, TokenExpiredError } from "jsonwebtoken";
 export const isAuthenticated = async (req: Request, res: Response, next: NextFunction) => {
@@ -62,7 +63,7 @@ export const isAuthenticated = async (req: Request, res: Response, next: NextFun
 };
 
 
-export const is = (allowed_roles: Array<String>) => {
+export const is = (allowed_roles: Array<User_Type>) => {
     return async (req: Request, res: Response, next: NextFunction) => {
         const response_body: HTTPResponseFormat = {
             status: 401,

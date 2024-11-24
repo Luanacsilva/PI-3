@@ -14,7 +14,7 @@ export class GetSubjectByIdUseCase {
 
         if (!id_validation.success) {
             throw new SubjectValidationDataError({
-                id: id_validation.error.formErrors.formErrors
+                subject_id: id_validation.error.formErrors.formErrors
             });
         }
 

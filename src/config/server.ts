@@ -10,6 +10,6 @@ app.use(cors());
 
 app.use("/api", api_routes);
 
-app.use(error_handler)
+app.use(error_handler);
 
 export { app };
