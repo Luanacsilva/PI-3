@@ -1,10 +1,10 @@
 # PI-3 Backend
 
-Este repositório contém o backend do projeto **PI-3**, desenvolvido utilizando **Node.js**, **Express**, **Prisma** e outras bibliotecas populares como **JWT** para autenticação e **bcrypt** para criptografia de senhas. 
+Este repositório contém o backend do projeto **PI-3**, desenvolvido utilizando **No, **Express**, **Prisma** e outras bibliotecas populares como **JWT** para autenticação e **bcrypt** para criptografia de senhas. 
 
 ## Tecnologias Utilizadas
 
-- **Node.js** - Plataforma JavaScript para backend.
+
 - **Express** - Framework para criação de APIs.
 - **Prisma** - ORM para banco de dados.
 - **JWT (jsonwebtoken)** - Biblioteca para autenticação via tokens JWT.
@@ -31,7 +31,7 @@ PI-3-main/
 
 ## Pré-requisitos
 
-- **Node.js** (v14 ou superior)
+
 - **NPM** (v6 ou superior)
 - **Banco de dados compatível com Prisma** (PostgreSQL, MySQL, SQLite, etc.)
 
